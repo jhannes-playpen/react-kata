@@ -189,6 +189,7 @@ Streamlining and making it nice!
       "test/**/*.jsx"
     ];
     lint(paths, {});
+* Show eslint problems in Sublime Text: You need [Package Control](https://packagecontrol.io/) first, then: Use `ctrl-shift P` to bring up command palete and type `Package Control: Install Package`. Type `SublimeLinter-contrib-eslint`. Repeat for `Babel`. Restart Sublime. Open a `.jsx` file and select View -> Syntax -> Open all files with current extension as ... -> Babel -> JavaScript. That's it!
 
 
 
