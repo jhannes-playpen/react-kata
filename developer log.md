@@ -176,7 +176,19 @@ Pendantic web bootstrap
 Streamlining and making it nice!
 ================================
 
-* In `package.json` add in "scripts" `"watch": "npm test -- --watch --growl"` in order to have the tests executed automatically on changes when you run `npm run watch`. Install Growl from http://www.growlforwindows.com/gfw/ and start it in order to get a nice popup when tests run.
+* Have the tests automatically execute when a file is changed: In `package.json` add in "scripts" `"watch": "npm test -- --watch --growl"` and run `npm run watch`. Install Growl from http://www.growlforwindows.com/gfw/ and start it in order to get a nice popup when tests run.
+* Use eslint to get warnings and errors on bad code: `npm add --save eslint mocha-eslint`, run `node_modules/bin/eslint --init` to generate a `.eslintrc.js` and add `test\eslint.js` to have linting run as part of the test:
+
+    import lint from 'mocha-eslint';
+
+    const paths = [
+      "*.js",
+      "src/**/*.js",
+      "src/**/*.jsx",
+      "test/**/*.js",
+      "test/**/*.jsx"
+    ];
+    lint(paths, {});
 
 
 
@@ -185,8 +197,6 @@ TODO: Streamline
 -    "start": "webpack-dev-server --content-base dist",
 +    "start": "webpack-dev-server --content-base dist --watch-content-base --inline --hot",
 
-
-eslint
 
 
 
