@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "start": "webpack-dev-server --content-base dist",
+    "start": "webpack-dev-server --content-base dist --watch-content-base",
     "webpack": "webpack",
     "test": "mocha",
     "lint": "eslint . --ext jsx --ext js",
@@ -21,6 +21,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
     "chai": "^4.1.0",
+    "chai-spies": "git://github.com/chaijs/chai-spies.git#master",
     "enzyme": "^2.9.1",
     "eslint": "^4.3.0",
     "eslint-plugin-react": "^7.1.0",

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ScoreBoard from './ScoreBoard.jsx';
+import {ScoreBoard} from './ScoreBoard.jsx';
 
 
 export default function App() {

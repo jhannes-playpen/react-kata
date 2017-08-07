@@ -1,0 +1,15 @@
+
+div.frame {
+    display: inline-block;
+    width: 100px;
+}
+
+.frame .first {
+    top: 0;
+    left: 0;
+}
+
+.frame .second {
+    top: 0;
+    right: 0;
+}
