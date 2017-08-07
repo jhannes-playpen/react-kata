@@ -1,5 +1,6 @@
 
-const FRAME_COUNT = 10;
+const FRAME_COUNT = 10,
+  NUMBER_OF_PINS = 10;
 
 function initialScoreBoard() {
   const frames = [];
@@ -9,16 +10,36 @@ function initialScoreBoard() {
   return frames;
 }
 
-function frame(rolls, i, total) {
-  return {
-    first: rolls[i].toString(),
-    second: rolls[i+1] && rolls[i+1].toString(),
-    total: total.toString()
-  };
+function frameScore(rolls, throwIndex) {
+  let total = 0;
+  for (let i=0; i<=throwIndex; i++) {
+    total += rolls[i] || 0;
+  }
+  return total;
 }
 
-function frameScore(rolls, i) {
-  return rolls[i] + (rolls[i+1] ? rolls[i+1] : 0);
+function frame(rolls, i) {
+  const first = rolls[i];
+  let second = rolls[i+1];
+  let total = frameScore(rolls, i+1);
+
+  if (second === undefined) {
+    second = "";
+    total = "";
+  } else if (first + second === NUMBER_OF_PINS) {
+    second = "/";
+    if (rolls[i+2]) {
+      total += rolls[i+2];
+    } else {
+      total = "";
+    }
+  }
+
+  return {
+    first: first.toString(),
+    second: second.toString(),
+    total: total.toString()
+  };
 }
 
 
@@ -26,10 +47,8 @@ export function scoreThrows(rolls) {
   const frames = initialScoreBoard();
   let i=0;
   let currentFrame = 0;
-  let total = 0;
   while (i < rolls.length) {
-    total += frameScore(rolls, i);
-    frames[currentFrame] = frame(rolls, i, total);
+    frames[currentFrame] = frame(rolls, i);
     i += 2;
     currentFrame++;
   }

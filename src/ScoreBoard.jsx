@@ -7,9 +7,7 @@ const FRAMES_PER_GAME = 10;
 export class ScoreBoard extends React.Component {
   constructor() {
     super();
-    this.state = {rolls: [], nextRoll: ""};
-    this.handleNextRoll = this.handleNextRoll.bind(this);
-    this.handleSaveNextRoll = this.handleSaveNextRoll.bind(this);
+    this.state = {rolls: []};
     this.handleNewRoll = this.handleNewRoll.bind(this);
   }
 
@@ -17,16 +15,6 @@ export class ScoreBoard extends React.Component {
     const {rolls} = this.state;
     const updatedRolls = rolls.concat([value]);
     this.setState({rolls: updatedRolls});
-  }
-
-  handleNextRoll() {
-    this.handleNewRoll("8");
-  }
-
-  handleSaveNextRoll() {
-    const {nextRoll, rolls} = this.state;
-    const updatedRolls = rolls.concat([parseInt(nextRoll, 10)]);
-    this.setState({nextRoll: "", rolls: updatedRolls});
   }
 
   render() {
@@ -49,13 +37,7 @@ export class NextRollInput extends React.Component {
   constructor() {
     super();
     this.state = {nextRoll: ""};
-    this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
-  }
-
-  handleChange(e) {
-    const nextRoll = e.target.value;
-    this.setState({nextRoll});
   }
 
   handleSave(e) {
@@ -71,7 +53,7 @@ export class NextRollInput extends React.Component {
     return (
       <form onSubmit={this.handleSave}>
         <input autoFocus={true} type="number" id="nextRoll" value={nextRoll}
-          onChange={this.handleChange} />
+          onChange={e => this.setState({nextRoll: e.target.value})} />
         <button id="save">Save</button>
       </form>
     );

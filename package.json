@@ -11,6 +11,7 @@
     "webpack": "webpack",
     "test": "mocha",
     "lint": "eslint . --ext jsx --ext js",
+    "lint:fix": "npm run lint -- --fix",
     "watch": "npm test -- --watch --growl"
   },
   "author": "",

@@ -1,5 +1,6 @@
 import {ScoreBoard, NextRollInput, ScoreView, FrameList, Frame}
   from '../src/ScoreBoard.jsx';
+import {scoreThrows} from '../src/bowling.jsx';
 
 import React from 'react';
 import {shallow} from "enzyme";
@@ -28,13 +29,9 @@ describe('Score board', () => {
 describe('Score view', () => {
   it('renders frame list', () => {
     const rolls = [1, 2, 3, 4];
-    const frames = [
-      {first: "1", second: "2", total: "3"},
-      {first: "3", second: "4", total: "10"},
-      {}, {}, {}, {}, {}, {}, {}, {}
-    ];
     const wrapper = shallow(<ScoreView rolls={rolls} />);
-    expect(wrapper.find(FrameList).props().frames).to.eql(frames);
+    expect(wrapper.find(FrameList).props().frames).
+      to.eql(scoreThrows(rolls));
   });
 });
 
@@ -72,7 +69,6 @@ describe("Next roll input", () => {
     expect(wrapper.state().nextRoll).to.equal("8");
     wrapper.find('form').simulate('submit', {preventDefault: () => {}});
     expect(wrapper.state().nextRoll).to.equal("");
-
   });
 
   it("reports next roll", () => {

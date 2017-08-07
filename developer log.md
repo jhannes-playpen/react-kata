@@ -14,13 +14,13 @@ Pedantic bootstrap
    * When prompted `test command`, enter `mocha`
 5. Run `npm test` => Fails with "'mocha' is not recognized as an internal or external command"
 6. Run `npm add -D mocha && npm test`: Fails with "No test files found", because our test is .jsx!
-7. Create file test/mocha.opts
+7. Create file `test/mocha.opts`
 
     --compilers jsx:babel-register
 
 8. Run `npm test`: Fails with "Cannot find module 'babel-register'"
 9. Run `npm add -D babel-register && npm test`: Fails with syntax error on "<App />" (react stuff)
-10. Create file ./.babelrc
+10. Create file `./.babelrc`
 
     {
         "presets": [
