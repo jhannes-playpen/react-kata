@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {scoreThrows} from './bowling.jsx';
 
@@ -60,39 +61,50 @@ export class NextRollInput extends React.Component {
   }
 }
 
-export function ScoreView(props) {
-  const frames = scoreThrows(props.rolls);
+NextRollInput.propTypes = {
+  onNextRoll: PropTypes.func.isRequired
+};
 
+export function ScoreView({rolls}) {
+  const frames = scoreThrows(rolls);
   return <FrameList frames={frames} />;
 }
 
-export function FrameList(props) {
-  const {frames} = props;
+ScoreView.propTypes = {
+  rolls: PropTypes.array.isRequired
+};
 
+
+export function FrameList({frames}) {
   return (
     <div>
-      {frames.map((frame, i) => {
-        const {first, second, total} = frame;
-        return <Frame
-          key={i}
-          round={i+1}
-          first={first}
-          second={second}
-          total={total} />;
+      {frames.map(({first, second, total}, i) => {
+        const props = {first, second, total};
+        return <Frame key={i} round={i+1} {...props} />;
       })}
     </div>
   );
 }
 
-export function Frame(props) {
-  const {round, first, second, total} = props;
+FrameList.propTypes = {
+  frames: PropTypes.array.isRequired
+};
 
+
+export function Frame({round, first, second, total}) {
   return (
     <div className="frame">
-      <h3>Round {round}</h3>
+      <h3>Runde {round}</h3>
       <div className="first">{first}</div>
       <div className="second">{second}</div>
       <div className="total">{total}</div>
     </div>
   );
 }
+
+Frame.propTypes = {
+  round: PropTypes.number.isRequired,
+  first: PropTypes.string,
+  second: PropTypes.string,
+  total: PropTypes.string
+};

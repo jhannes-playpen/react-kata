@@ -222,7 +222,7 @@ module.exports = {
         "quote-props": "off",
         "quotes": "off",
         "radix": "error",
-        "react/prop-types": "off",
+        "react/prop-types": "error",
         "require-await": "error",
         "require-jsdoc": "off",
         "rest-spread-spacing": "error",
